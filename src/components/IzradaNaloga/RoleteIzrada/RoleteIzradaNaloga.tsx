@@ -57,7 +57,7 @@ const RoleteIzradaNaloga = () => {
   return (
     <div className={styles.odabirUređivanje2}>
       <form className={styles.flexForm2} onSubmit={dodajProizvod}>
-        <select onChange={(e) => setRolete({ ...rolete, tip: e.target.value })}>
+        <select required onChange={(e) => setRolete({ ...rolete, tip: e.target.value })}>
           <option value="">-- Odaberi Proizvod</option>
           {tipoviRolete.length > 0 &&
             tipoviRolete.map((tip: string, idx: number) => {
