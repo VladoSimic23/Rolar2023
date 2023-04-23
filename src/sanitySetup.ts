@@ -1,7 +1,7 @@
 import sanityClient from "@sanity/client";
 
 export default sanityClient({
-  projectId: import.meta.env.VITE_PROJECT_ID,
+  projectId: "sss2glsh",
   dataset: "production",
   useCdn: true,
 });
