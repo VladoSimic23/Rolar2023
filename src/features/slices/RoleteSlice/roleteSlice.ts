@@ -7,8 +7,6 @@ import {
 } from "./roleteInterface";
 import { RoletaI } from "../../../interface/roleteI";
 
-// const storedRoleteNalog = localStorage.getItem("roleteNalog");
-
 const initialState: RoleteInitState = {
   tipoviRolete: [],
   trenutniTipProizvoda: "",
@@ -43,17 +41,6 @@ export const roleteSlice = createSlice({
     trenutniProizvod: (state, action: PayloadAction<string>) => {
       state.trenutniTipProizvoda = action.payload;
     },
-    // dodajRoletuNaNalog: (state, { payload }) => {
-    //   payload.id = "_" + Math.random().toString(36).substr(2, 9);
-    //   const roleteNalog: RoleteIzradaNalogaI[] = [
-    //     ...state.roleteNalog,
-    //     payload,
-    //   ];
-    //   const trenutnaRoleta: TrenutnaRoletaI = payload;
-    //   // update local storage with the new roleteNalog array
-    //   localStorage.setItem("roleteNalog", JSON.stringify(roleteNalog));
-    //   return { ...state, roleteNalog, trenutnaRoleta };
-    // },
     dodajRoletuNaNalog: (state, { payload }) => {
       payload.id = "_" + Math.random().toString(36).substr(2, 9);
       const roleteNalog: RoleteIzradaNalogaI[] = [

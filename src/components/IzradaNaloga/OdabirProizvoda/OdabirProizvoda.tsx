@@ -43,6 +43,14 @@ const OdabirProizvoda = () => {
           >
             Fix Standard
           </li>
+          <li
+            onClick={() => setTrenutniTipProizvoda("RoloRM")}
+            className={
+              trenutniTipProizvoda === "RoloRM" ? styles.bgRed : styles.bgNone
+            }
+          >
+            Rolo RM
+          </li>
         </ul>
       </div>
     </div>

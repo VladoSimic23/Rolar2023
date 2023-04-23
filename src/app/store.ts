@@ -3,7 +3,7 @@ import roleteReducer from "../features/slices/RoleteSlice/roleteSlice";
 import fixR50Reducer from "../features/slices/FIxR50Slice/FixR50Slice";
 import fixStandardReducer from "../features/slices/FixStandardSlice/FixStandardSlice";
 import kupacReducer from "../features/slices/KupacSlice/KupacSlice";
-import adminReducer from "../features/slices/Admin/adminSlice";
+import roloRmReducer from "../features/slices/RoloRM/RoloRMSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
     fixR50: fixR50Reducer,
     fixStandard: fixStandardReducer,
     kupac: kupacReducer,
-    admin: adminReducer,
+    roloRM: roloRmReducer,
   },
 });
 

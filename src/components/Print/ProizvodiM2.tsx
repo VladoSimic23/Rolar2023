@@ -6,6 +6,7 @@ const ProizvodiM2 = () => {
     rolete: { roleteNalog, roleteM2 },
     fixR50: { fixR50Nalog, r50M2 },
     fixStandard: { fixStandardNalog, mrezeStandardM2 },
+    roloRM: { roloRMm2, roloRMnalog },
   } = useAppSelector(selectRolete);
   return (
     <div>
@@ -24,6 +25,12 @@ const ProizvodiM2 = () => {
       {fixR50Nalog.length > 0 && (
         <h5>
           R50: {String(r50M2)} <span style={{ fontSize: "14px" }}>m2</span>
+        </h5>
+      )}
+      {roloRMnalog.length > 0 && (
+        <h5>
+          Rolo RM: {String(roloRMm2)}{" "}
+          <span style={{ fontSize: "14px" }}>m2</span>
         </h5>
       )}
     </div>

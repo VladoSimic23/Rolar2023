@@ -1,12 +1,12 @@
 .prikazKomariceR50 {
   color: white;
-  padding: 30px;
+  padding: 15px;
   text-align: center;
 }
 
 .prikazKomariceR50 h4 {
   margin: 0;
-  padding: 30px;
+  padding: 20px;
 }
 
 .komariceR50Grid {
@@ -27,5 +27,6 @@
           flex: 1;
   text-align: center;
   max-height: 40px;
+  padding: 3px 0;
 }
 /*# sourceMappingURL=R50PrikazNaloga.module.css.map */

@@ -12,12 +12,16 @@ import OdabirProizvoda from "../OdabirProizvoda/OdabirProizvoda";
 import RoleteIzradaNaloga from "../RoleteIzrada/RoleteIzradaNaloga";
 import styles from "./css/izradaNaloga.module.css";
 import Kupac from "../../Kupac/Kupac";
+import RoloRMizradaNaloga from "../RoloRMizrada/RoloRMizradaNaloga";
+import RoloRmPrikazNaloga from "../../PrikazNaloga/RoloRMPrikazNaloga/RoloRmPrikazNaloga";
+import RoloRMrezanje from "../../rezanje/RoloRMrezanje/RoloRMrezanje";
 
 const IzradaNaloga = () => {
   const {
     rolete: { trenutniTipProizvoda, roleteNalog, roleteRezanje },
     fixR50: { fixR50Nalog, mrezeR50Rezanje },
     fixStandard: { fixStandardNalog, standardRezanje },
+    roloRM: { roloRMnalog, roloRMrezanje },
   } = useAppSelector(selectRolete);
 
   return (
@@ -28,6 +32,7 @@ const IzradaNaloga = () => {
         {trenutniTipProizvoda === "Rolete" && <RoleteIzradaNaloga />}
         {trenutniTipProizvoda === "R50" && <FixR50Izrada />}
         {trenutniTipProizvoda === "Standard" && <FixStandardIzrada />}
+        {trenutniTipProizvoda === "RoloRM" && <RoloRMizradaNaloga />}
       </div>
       <div className={styles.right}>
         <div>
@@ -37,6 +42,8 @@ const IzradaNaloga = () => {
           {mrezeR50Rezanje.length > 0 && <R50Rezanje />}
           {fixStandardNalog.length > 0 && <StandardPrikazNaloga />}
           {standardRezanje.length > 0 && <StandardRezanje />}
+          {roloRMnalog.length > 0 && <RoloRmPrikazNaloga />}
+          {roloRMrezanje.length > 0 && <RoloRMrezanje />}
         </div>
       </div>
     </div>
