@@ -11,6 +11,7 @@ import { MrezeNalogR50I } from "../../../interface/fixMreze";
 import styles from "./css/fixR50Izrada.module.css";
 import globalStyles from "../../../globalStyles/globalCss.module.css";
 import useFetchFixMreze from "../../../fetch/useFetchFixMreze";
+import { handleChange } from "../../../utils";
 
 const FixR50Izrada = () => {
   const dispatch = useAppDispatch();
@@ -72,10 +73,9 @@ const FixR50Izrada = () => {
             required
             type="number"
             id="r50Sirina"
+            name="sirina"
             value={mrezeR50.sirina}
-            onChange={(e) =>
-              setMrezeR50({ ...mrezeR50, sirina: Number(e.target.value) })
-            }
+            onChange={(e) => handleChange<any>(e, setMrezeR50)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -85,10 +85,9 @@ const FixR50Izrada = () => {
             required
             id="r50Visina"
             type="number"
+            name="visina"
             value={mrezeR50.visina}
-            onChange={(e) =>
-              setMrezeR50({ ...mrezeR50, visina: Number(e.target.value) })
-            }
+            onChange={(e) => handleChange<any>(e, setMrezeR50)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -99,9 +98,8 @@ const FixR50Izrada = () => {
             type="number"
             id="r50Komada"
             value={mrezeR50.komada}
-            onChange={(e) =>
-              setMrezeR50({ ...mrezeR50, komada: Number(e.target.value) })
-            }
+            name="komada"
+            onChange={(e) => handleChange<any>(e, setMrezeR50)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -112,9 +110,8 @@ const FixR50Izrada = () => {
             type="number"
             id="r50Kukice"
             value={mrezeR50.kukice}
-            onChange={(e) =>
-              setMrezeR50({ ...mrezeR50, kukice: Number(e.target.value) })
-            }
+            name="kukice"
+            onChange={(e) => handleChange<any>(e, setMrezeR50)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>

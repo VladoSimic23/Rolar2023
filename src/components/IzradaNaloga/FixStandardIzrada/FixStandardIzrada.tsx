@@ -11,6 +11,7 @@ import { MrezeNalogStandard } from "../../../interface/fixMrezeStandard";
 import styles from "./css/fixStandardIzrada.module.css";
 import globalStyles from "../../../globalStyles/globalCss.module.css";
 import useFetchFixMrezeStandard from "../../../fetch/useFetchFixMrezeStandard";
+import { handleChange } from "../../../utils";
 
 const FixStandardIzrada = () => {
   const [mrezeStandard, setMrezeStandard] = useState<MrezeNalogStandard>({
@@ -73,13 +74,9 @@ const FixStandardIzrada = () => {
             required
             type="number"
             id="stSirina"
+            name="sirina"
             value={mrezeStandard.sirina}
-            onChange={(e) =>
-              setMrezeStandard({
-                ...mrezeStandard,
-                sirina: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setMrezeStandard)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -89,13 +86,9 @@ const FixStandardIzrada = () => {
             required
             type="number"
             id="stVisina"
+            name="visina"
             value={mrezeStandard.visina}
-            onChange={(e) =>
-              setMrezeStandard({
-                ...mrezeStandard,
-                visina: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setMrezeStandard)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -105,13 +98,9 @@ const FixStandardIzrada = () => {
           <input
             type="number"
             id="stKomada"
+            name="komada"
             value={mrezeStandard.komada}
-            onChange={(e) =>
-              setMrezeStandard({
-                ...mrezeStandard,
-                komada: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setMrezeStandard)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>

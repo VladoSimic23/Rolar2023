@@ -10,6 +10,7 @@ import {
   rezanjeRoloRM,
   selectRoloRM,
 } from "../../../features/slices/RoloRM/RoloRMSlice";
+import { handleChange } from "../../../utils";
 
 const RoloRMizradaNaloga = () => {
   const [roloRM, setRoloRMnalog] = useState<RoloRMnalog>({
@@ -50,13 +51,9 @@ const RoloRMizradaNaloga = () => {
             required
             type="number"
             id="stSirina"
+            name="sirina"
             value={roloRM.sirina}
-            onChange={(e) =>
-              setRoloRMnalog({
-                ...roloRM,
-                sirina: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setRoloRMnalog)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -66,13 +63,9 @@ const RoloRMizradaNaloga = () => {
             required
             type="number"
             id="stVisina"
+            name="visina"
             value={roloRM.visina}
-            onChange={(e) =>
-              setRoloRMnalog({
-                ...roloRM,
-                visina: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setRoloRMnalog)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -82,13 +75,9 @@ const RoloRMizradaNaloga = () => {
           <input
             type="number"
             id="stKomada"
+            name="komada"
             value={roloRM.komada}
-            onChange={(e) =>
-              setRoloRMnalog({
-                ...roloRM,
-                komada: Number(e.target.value),
-              })
-            }
+            onChange={(e) => handleChange<any>(e, setRoloRMnalog)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>

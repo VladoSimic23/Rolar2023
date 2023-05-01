@@ -11,6 +11,7 @@ import styles from "./css/roleteIzradaNaloga.module.css";
 import globalStyels from "../../../globalStyles/globalCss.module.css";
 import useFetchRolete from "../../../fetch/useFetchRolete";
 import { RoleteIzradaNalogaI } from "../../../interface/roleteI";
+import { handleChange } from "../../../utils";
 
 const RoleteIzradaNaloga = () => {
   const dispatch = useAppDispatch();
@@ -57,7 +58,10 @@ const RoleteIzradaNaloga = () => {
   return (
     <div className={styles.odabirUređivanje2}>
       <form className={styles.flexForm2} onSubmit={dodajProizvod}>
-        <select required onChange={(e) => setRolete({ ...rolete, tip: e.target.value })}>
+        <select
+          required
+          onChange={(e) => setRolete({ ...rolete, tip: e.target.value })}
+        >
           <option value="">-- Odaberi Proizvod</option>
           {tipoviRolete.length > 0 &&
             tipoviRolete.map((tip: string, idx: number) => {
@@ -74,10 +78,9 @@ const RoleteIzradaNaloga = () => {
             type="number"
             required
             id="rolSirina"
+            name="sirina"
             value={rolete.sirina}
-            onChange={(e) =>
-              setRolete({ ...rolete, sirina: Number(e.target.value) })
-            }
+            onChange={(e) => handleChange<any>(e, setRolete)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -87,10 +90,9 @@ const RoleteIzradaNaloga = () => {
             required
             type="number"
             id="rolVisina"
+            name="visina"
             value={rolete.visina}
-            onChange={(e) =>
-              setRolete({ ...rolete, visina: Number(e.target.value) })
-            }
+            onChange={(e) => handleChange<any>(e, setRolete)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -101,10 +103,9 @@ const RoleteIzradaNaloga = () => {
             type="number"
             id="rolKomada"
             required
+            name="komada"
             value={rolete.komada}
-            onChange={(e) =>
-              setRolete({ ...rolete, komada: Number(e.target.value) })
-            }
+            onChange={(e) => handleChange<any>(e, setRolete)}
             onWheel={(e: any) => e.target.blur()}
           />
         </div>
@@ -117,13 +118,9 @@ const RoleteIzradaNaloga = () => {
                 className={styles.inptStyle}
                 type="number"
                 id="komL"
+                name="lijevaKomanda"
                 value={rolete.lijevaKomanda}
-                onChange={(e) =>
-                  setRolete({
-                    ...rolete,
-                    lijevaKomanda: Number(e.target.value),
-                  })
-                }
+                onChange={(e) => handleChange<any>(e, setRolete)}
                 onWheel={(e: any) => e.target.blur()}
               />
             </div>
@@ -133,11 +130,10 @@ const RoleteIzradaNaloga = () => {
               <input
                 type="number"
                 id="komD"
+                name="desnaKomanda"
                 className={styles.inptStyle}
                 value={rolete.desnaKomanda}
-                onChange={(e) =>
-                  setRolete({ ...rolete, desnaKomanda: Number(e.target.value) })
-                }
+                onChange={(e) => handleChange<any>(e, setRolete)}
                 onWheel={(e: any) => e.target.blur()}
               />
             </div>

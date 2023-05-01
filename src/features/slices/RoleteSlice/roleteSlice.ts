@@ -43,15 +43,12 @@ export const roleteSlice = createSlice({
     },
     dodajRoletuNaNalog: (state, { payload }) => {
       payload.id = "_" + Math.random().toString(36).substr(2, 9);
-      const roleteNalog: RoleteIzradaNalogaI[] = [
-        ...state.roleteNalog,
-        payload,
-      ];
+      let roleteNalog: RoleteIzradaNalogaI[] = [...state.roleteNalog, payload];
       const trenutnaRoleta: TrenutnaRoletaI = payload;
       return { ...state, roleteNalog, trenutnaRoleta };
     },
     ukloniRoletuSaNaloga: (state, action) => {
-      const filterRolete = state.roleteNalog.filter(
+      let filterRolete = state.roleteNalog.filter(
         (rol) => rol.id !== action.payload
       );
       const filterRoletePilanje = state.roleteRezanje.filter(
@@ -151,7 +148,7 @@ export const roleteSlice = createSlice({
       };
     },
     rolM2: (state, action: PayloadAction<"">) => {
-      const getRolM2 = state.roleteNalog.map((mreze) => {
+      let getRolM2 = state.roleteNalog.map((mreze) => {
         const m2 = ((Number(mreze.sirina) / 100) * Number(mreze.visina)) / 100;
         return m2 * Number(mreze.komada);
       });
