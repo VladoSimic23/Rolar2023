@@ -25,9 +25,12 @@ const initialState: R50InitStateI = {
   r50M2: 0,
 };
 
+const savedState: R50InitStateI =
+  JSON.parse(localStorage.getItem("fixR50Slice")!) || initialState;
+
 export const fixR50Slice = createSlice({
   name: "r50",
-  initialState,
+  initialState: savedState,
   reducers: {
     tipoviMrezeR50A: (state, action: PayloadAction<KomaricaR50I[]>) => {
       const tipoviMreze: string[] = action.payload?.map(
@@ -37,6 +40,9 @@ export const fixR50Slice = createSlice({
       );
 
       state.tipoviMrezeR50 = tipoviMreze;
+
+      // Save the updated state to localStorage
+      localStorage.setItem("fixR50Slice", JSON.stringify(state));
     },
     dodajMrezuR50Nalog: (state, action) => {
       action.payload.id = "_" + Math.random().toString(36).substr(2, 9);
@@ -45,7 +51,13 @@ export const fixR50Slice = createSlice({
         action.payload,
       ];
 
-      return { ...state, fixR50Nalog, trenutnaMrezaR50: action.payload };
+      state.fixR50Nalog = fixR50Nalog;
+      state.trenutnaMrezaR50 = action.payload;
+
+      // Save the updated state to localStorage
+      localStorage.setItem("fixR50Slice", JSON.stringify(state));
+
+      return state;
     },
     ukloniMrezuR50SaNaloga: (state, action: PayloadAction<String>) => {
       const filterMrezeTip1 = state.fixR50Nalog.filter(
@@ -54,11 +66,13 @@ export const fixR50Slice = createSlice({
       const filterMrezeTip1Pilanje = state.mrezeR50Rezanje.filter(
         (mre) => mre.id !== action.payload
       );
-      return {
-        ...state,
-        fixR50Nalog: filterMrezeTip1,
-        mrezeR50Rezanje: filterMrezeTip1Pilanje,
-      };
+      state.fixR50Nalog = filterMrezeTip1;
+      state.mrezeR50Rezanje = filterMrezeTip1Pilanje;
+
+      // Save the updated state to localStorage
+      localStorage.setItem("fixR50Slice", JSON.stringify(state));
+
+      return state;
     },
     rezanjeR50: (state, action: PayloadAction<KomaricaR50I[]>) => {
       let mjeraType: any;

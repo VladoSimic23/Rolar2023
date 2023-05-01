@@ -7,6 +7,8 @@ import {
 } from "./roleteInterface";
 import { RoletaI } from "../../../interface/roleteI";
 
+const localStorageKey = "roleteState";
+
 const initialState: RoleteInitState = {
   tipoviRolete: [],
   trenutniTipProizvoda: "",
@@ -28,33 +30,58 @@ const initialState: RoleteInitState = {
   isPrint: false,
 };
 
-export const roleteSlice = createSlice({
+const loadStateFromLocalStorage = (): RoleteInitState => {
+  try {
+    const serializedState = localStorage.getItem(localStorageKey);
+    if (serializedState === null) {
+      return initialState;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.warn("Error loading state from local storage", e);
+    return initialState;
+  }
+};
+
+const saveStateToLocalStorage = (state: RoleteInitState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem(localStorageKey, serializedState);
+  } catch (e) {
+    console.warn("Error saving state to local storage", e);
+  }
+};
+
+const roleteSlice = createSlice({
   name: "rolete",
-  initialState,
+  initialState: loadStateFromLocalStorage(),
   reducers: {
     roleteTipovi: (state, action: PayloadAction<RoletaI[]>) => {
       const tipovi: string[] = action.payload?.map((tipRolete: RoletaI) => {
         return tipRolete.ImeRolete;
       });
       state.tipoviRolete = tipovi;
+      saveStateToLocalStorage(state);
     },
     trenutniProizvod: (state, action: PayloadAction<string>) => {
       state.trenutniTipProizvoda = action.payload;
+      saveStateToLocalStorage(state);
     },
     dodajRoletuNaNalog: (state, { payload }) => {
       payload.id = "_" + Math.random().toString(36).substr(2, 9);
       let roleteNalog: RoleteIzradaNalogaI[] = [...state.roleteNalog, payload];
       const trenutnaRoleta: TrenutnaRoletaI = payload;
-      return { ...state, roleteNalog, trenutnaRoleta };
+      const nextState = { ...state, roleteNalog, trenutnaRoleta };
+      saveStateToLocalStorage(nextState);
+      return nextState;
     },
     ukloniRoletuSaNaloga: (state, action) => {
       let filterRolete = state.roleteNalog.filter(
-        (rol) => rol.id !== action.payload
+        (rol: any) => rol.id !== action.payload
       );
       const filterRoletePilanje = state.roleteRezanje.filter(
-        (rol) => rol.id !== action.payload
+        (rol: any) => rol.id !== action.payload
       );
-
       return {
         ...state,
         roleteNalog: filterRolete,
@@ -148,12 +175,14 @@ export const roleteSlice = createSlice({
       };
     },
     rolM2: (state, action: PayloadAction<"">) => {
-      let getRolM2 = state.roleteNalog.map((mreze) => {
+      let getRolM2 = state.roleteNalog.map((mreze: RoleteIzradaNalogaI) => {
         const m2 = ((Number(mreze.sirina) / 100) * Number(mreze.visina)) / 100;
         return m2 * Number(mreze.komada);
       });
 
-      const sumRolM2 = Number(getRolM2.reduce((a, b) => a + b, 0).toFixed(3));
+      const sumRolM2 = Number(
+        getRolM2.reduce((a: number, b: number) => a + b, 0).toFixed(3)
+      );
       return { ...state, roleteM2: sumRolM2 };
     },
     togglePrint: (state, action: PayloadAction<"">) => {

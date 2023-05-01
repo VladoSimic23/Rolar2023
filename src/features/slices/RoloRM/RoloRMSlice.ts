@@ -6,6 +6,8 @@ import {
   RoloRMnalog,
 } from "../../../interface/roloRMI";
 
+const ROLO_RM_LOCAL_STORAGE_KEY = "roloRM";
+
 const initialState: RoloRmInitialState = {
   roloRMnalog: [],
   roloRMrezanje: [],
@@ -19,20 +21,27 @@ const initialState: RoloRmInitialState = {
   },
 };
 
+const savedState: RoloRmInitialState =
+  JSON.parse(localStorage.getItem(ROLO_RM_LOCAL_STORAGE_KEY)!) || initialState;
+
 export const roloRMSlice = createSlice({
   name: "roloRM",
-  initialState,
+  initialState: savedState,
   reducers: {
     dodajRoloRMnaNalog: (state, action) => {
       action.payload.id = "_" + Math.random().toString(36).substr(2, 9);
       action.payload.tip = "Rolo RM";
       const roloRMnalog: RoloRMnalog[] = [...state.roloRMnalog, action.payload];
-
-      return {
+      const nextState = {
         ...state,
         roloRMnalog,
         trenutnoRoloRM: action.payload,
       };
+      localStorage.setItem(
+        ROLO_RM_LOCAL_STORAGE_KEY,
+        JSON.stringify(nextState)
+      );
+      return nextState;
     },
     ukloniRoloRMSaNaloga: (state, action: PayloadAction<string>) => {
       const filterMrezeTip2 = state.roloRMnalog.filter(
@@ -41,64 +50,72 @@ export const roloRMSlice = createSlice({
       const filterMrezeTip2Pilanje = state.roloRMrezanje.filter(
         (mre) => mre.id !== action.payload
       );
-      return {
+      const nextState = {
         ...state,
         roloRMnalog: filterMrezeTip2,
         roloRMrezanje: filterMrezeTip2Pilanje,
       };
+      localStorage.setItem(
+        ROLO_RM_LOCAL_STORAGE_KEY,
+        JSON.stringify(nextState)
+      );
+      return nextState;
     },
     rezanjeRoloRM: (state, action: PayloadAction<RoloRMI[]>) => {
       const rez = action.payload;
       const rezanjeMrezetip2 = rez[0];
 
-      const res = {
-        id: String(state.trenutnoRoloRM.id),
-        tip: String(rezanjeMrezetip2?.nazivRoloRm),
-        kutija:
-          state.trenutnoRoloRM.sirina &&
-          Math.round(
-            (Number(state.trenutnoRoloRM.sirina) -
-              Number(rezanjeMrezetip2.kutija)) *
-              100
-          ) / 100,
-        poprecniProfil:
-          state.trenutnoRoloRM.sirina &&
-          Math.round(
-            (Number(state.trenutnoRoloRM.sirina) -
-              Number(rezanjeMrezetip2.poprecniProfil)) *
-              100
-          ) / 100,
-        vodilica:
-          state.trenutnoRoloRM.sirina &&
-          Math.round(
-            (Number(state.trenutnoRoloRM.visina) -
-              Number(rezanjeMrezetip2.vodilica)) *
-              100
-          ) / 100,
-        mrezaIzavrsna:
-          state.trenutnoRoloRM.visina &&
-          Math.round(
-            (Number(state.trenutnoRoloRM.sirina) -
-              Number(rezanjeMrezetip2.mrezaIzavrsna)) *
-              100
-          ) / 100,
-        komada: state.trenutnoRoloRM.komada,
-      };
-      const trEs = [...state.roloRMrezanje, res];
+      if (rezanjeMrezetip2) {
+        const res = {
+          id: String(state.trenutnoRoloRM.id),
+          tip: String(rezanjeMrezetip2?.nazivRoloRm),
+          kutija:
+            state.trenutnoRoloRM.sirina &&
+            Math.round(
+              (Number(state.trenutnoRoloRM.sirina) -
+                Number(rezanjeMrezetip2.kutija)) *
+                100
+            ) / 100,
+          poprecniProfil:
+            state.trenutnoRoloRM.sirina &&
+            Math.round(
+              (Number(state.trenutnoRoloRM.sirina) -
+                Number(rezanjeMrezetip2.poprecniProfil)) *
+                100
+            ) / 100,
+          vodilica:
+            state.trenutnoRoloRM.sirina &&
+            Math.round(
+              (Number(state.trenutnoRoloRM.visina) -
+                Number(rezanjeMrezetip2.vodilica)) *
+                100
+            ) / 100,
+          mrezaIzavrsna:
+            state.trenutnoRoloRM.visina &&
+            Math.round(
+              (Number(state.trenutnoRoloRM.sirina) -
+                Number(rezanjeMrezetip2.mrezaIzavrsna)) *
+                100
+            ) / 100,
+          komada: state.trenutnoRoloRM.komada,
+        };
+        const trEs = [...state.roloRMrezanje, res];
 
-      const filterByIdMrezeTip2 = trEs.filter((it) => it.id !== "");
+        const filterByIdMrezeTip2 = trEs.filter((it) => it.id !== "");
 
-      return {
-        ...state,
-        roloRMrezanje: filterByIdMrezeTip2,
-        trenutnoRoloRM: {
-          ...state.trenutnoRoloRM,
-          id: "",
-          sirina: "",
-          visina: "",
-          komada: "",
-        },
-      };
+        return {
+          ...state,
+          roloRMrezanje: filterByIdMrezeTip2,
+          trenutnoRoloRM: {
+            ...state.trenutnoRoloRM,
+            id: "",
+            sirina: "",
+            visina: "",
+            komada: "",
+          },
+        };
+      }
+      return state;
     },
     RoloRmM2: (state, action: PayloadAction<any>) => {
       const getMrezeTip2M2 = state.roloRMnalog.map((mreze) => {

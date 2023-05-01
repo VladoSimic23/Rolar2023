@@ -22,9 +22,33 @@ const initialState: FixStandardInitStateI = {
   mrezeStandardM2: 0,
 };
 
-export const fixStandardSlice = createSlice({
+// Load the state from local storage if it exists, otherwise use the initial state
+const loadState = (): FixStandardInitStateI => {
+  try {
+    const serializedState = localStorage.getItem("fixStandardState");
+    if (serializedState === null) {
+      return initialState;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.log(err);
+    return initialState;
+  }
+};
+
+// Save the state to local storage
+const saveState = (state: FixStandardInitStateI) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("fixStandardState", serializedState);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const fixStandardSlice = createSlice({
   name: "fixStandard",
-  initialState,
+  initialState: loadState(),
   reducers: {
     tipoviMrezeStand: (state, action: PayloadAction<KomaricaStandardI[]>) => {
       const tipoviMreze: string[] = action.payload?.map(
@@ -36,6 +60,7 @@ export const fixStandardSlice = createSlice({
       );
 
       state.tipoviMrezeStandard = tipoviMreze;
+      saveState(state); // Save the updated state to local storage
     },
     dodajMrezuStandNalog: (state, action) => {
       action.payload.id = "_" + Math.random().toString(36).substr(2, 9);
@@ -44,11 +69,13 @@ export const fixStandardSlice = createSlice({
         action.payload,
       ];
 
-      return {
+      const newState = {
         ...state,
         fixStandardNalog,
         trenutnaStandardMreza: action.payload,
       };
+      saveState(newState); // Save the updated state to local storage
+      return newState;
     },
     ukloniMrezuStandardSaNaloga: (state, action: PayloadAction<string>) => {
       const filterMrezeTip2 = state.fixStandardNalog.filter(
@@ -57,11 +84,13 @@ export const fixStandardSlice = createSlice({
       const filterMrezeTip2Pilanje = state.standardRezanje.filter(
         (mre) => mre.id !== action.payload
       );
-      return {
+      const newState = {
         ...state,
         fixStandardNalog: filterMrezeTip2,
         standardRezanje: filterMrezeTip2Pilanje,
       };
+      saveState(newState); // Save the updated state to local storage
+      return newState;
     },
     rezanjeFixStandard: (state, action: PayloadAction<KomaricaStandardI[]>) => {
       const rezanjeMrezetip2: KomaricaStandardI | undefined =
