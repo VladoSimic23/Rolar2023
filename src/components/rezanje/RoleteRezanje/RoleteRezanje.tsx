@@ -11,7 +11,7 @@ const RoleteRezanje = () => {
   }
 
   return (
-    <div className={styles.printPar} style={{ background: "#7788b0" }}>
+    <div className={styles.printPar}>
       <h4>Rolete Rezanje</h4>
       <div className={styles.roleteRezanjeGrid}>
         <div className={styles.roleteRezanjeGridChild}>

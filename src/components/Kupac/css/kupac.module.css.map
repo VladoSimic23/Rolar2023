@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,UAAU,EAAE,MAAM;EAClB,OAAO,EAAE,SAAS;EAClB,aAAa,EAAE,iBAAiB;CACjC;;AACD,AAAA,UAAU,CAAC;EACT,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAC/B",
-    "sources": [
-        "kupac.module.scss"
-    ],
-    "names": [],
-    "file": "kupac.module.css"
-}
+{"version":3,"sources":["kupac.module.scss","kupac.module.css"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,kBAAA;EACA,gCAAA;ACCJ;;ADCE;EACE,aAAA;EACA,8BAAA;ACEJ","file":"kupac.module.css"}

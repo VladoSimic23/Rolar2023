@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACf,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAC/B;;AACD,AAAA,mBAAmB,CAAC;EAClB,IAAI,EAAE,CAAC;EACP,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,IAAI;CACjB;;AACD,AAAA,uBAAuB,CAAC;EACtB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,KAAK;CACb",
-    "sources": [
-        "standardPrikaznaloga.module.scss"
-    ],
-    "names": [],
-    "file": "standardPrikaznaloga.module.css"
-}
+{"version":3,"sources":["standardPrikaznaloga.module.scss","standardPrikaznaloga.module.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;ACCJ;;ADCE;EACE,OAAA;EACA,kBAAA;EACA,gBAAA;ACEJ;;ADAE;EACE,aAAA;EACA,kBAAA;ACGJ","file":"standardPrikaznaloga.module.css"}

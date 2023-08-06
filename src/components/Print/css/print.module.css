@@ -1,20 +1,22 @@
 .print {
   padding: 30px 15px;
 }
+.print p, .print h1, .print h2, .print h3, .print h4, .print h5 {
+  color: black;
+}
+.print div {
+  background: white !important;
+}
 
 .kupacFlexPrint {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   max-width: 300px;
   border-bottom: 1px solid black;
 }
 
 .kupacParent {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .kupacParent h5 {
@@ -23,15 +25,10 @@
 }
 
 .flexM2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
 }
-
 .flexM2 h4 {
   padding: 30px;
   margin: 0;
-}
-/*# sourceMappingURL=print.module.css.map */
+}/*# sourceMappingURL=print.module.css.map */

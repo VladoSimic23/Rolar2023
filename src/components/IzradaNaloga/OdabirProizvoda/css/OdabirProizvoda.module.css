@@ -3,17 +3,7 @@
   line-height: 1.7;
   border-bottom: 3px solid #8892b0;
   padding: 15px 0 45px 0;
-  -webkit-animation: fadeIn 1s;
-          animation: fadeIn 1s;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: fadeIn 1s;
 }
 
 @keyframes fadeIn {
@@ -24,11 +14,9 @@
     opacity: 1;
   }
 }
-
 ul {
   margin-top: 30px;
 }
-
 ul li {
   cursor: pointer;
 }
@@ -40,5 +28,4 @@ ul li {
 
 .bgNone {
   background: none;
-}
-/*# sourceMappingURL=OdabirProizvoda.module.css.map */
+}/*# sourceMappingURL=OdabirProizvoda.module.css.map */

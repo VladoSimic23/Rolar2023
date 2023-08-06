@@ -6,15 +6,9 @@
 
 .flexInput {
   max-width: 400px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .inptStyle {
@@ -22,19 +16,11 @@
 }
 
 .mjeraStyle {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
 }
-
 .mjeraStyle input {
   margin-left: 10px;
-}
-/*# sourceMappingURL=fixStandardIzrada.module.css.map */
+}/*# sourceMappingURL=fixStandardIzrada.module.css.map */

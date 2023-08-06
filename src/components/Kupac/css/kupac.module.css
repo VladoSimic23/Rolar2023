@@ -5,11 +5,6 @@
 }
 
 .kupacFlex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-/*# sourceMappingURL=kupac.module.css.map */
+  justify-content: space-between;
+}/*# sourceMappingURL=kupac.module.css.map */

@@ -1,16 +1,10 @@
 .komariceStandGrid {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .komariceStandChild {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   text-align: center;
   max-height: 40px;
 }
@@ -18,7 +12,4 @@
 .prikazKomariceStandard {
   padding: 30px;
   text-align: center;
-  background: #382f3e;
-  color: white;
-}
-/*# sourceMappingURL=standardPrikaznaloga.module.css.map */
+}/*# sourceMappingURL=standardPrikaznaloga.module.css.map */

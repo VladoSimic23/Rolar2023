@@ -12,7 +12,7 @@ const StandardRezanje = () => {
   }
 
   return (
-    <div className={styles.printPar} style={{ background: "#382f3e" }}>
+    <div className={styles.printPar}>
       {" "}
       <div>
         <h4>Fix Standard Nalog</h4>

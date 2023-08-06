@@ -1,5 +1,14 @@
+
 .print {
     padding: 30px 15px;
+
+    p, h1, h2,h3,h4,h5 {
+      color: black;
+    }
+    
+    div {
+      background: white !important;
+    }
   }
   
   .kupacFlexPrint {
